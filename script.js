@@ -52,23 +52,7 @@ function animateCounter(element, target) {
     }, 20);
 }
 
-// Trigger counter animation when stats section is visible
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.stat-number').forEach(stat => {
-                const target = parseInt(stat.getAttribute('data-target'));
-                animateCounter(stat, target);
-            });
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
 
-const statsSection = document.querySelector('.stats');
-if (statsSection) {
-    statsObserver.observe(statsSection);
-}
 
 // Scroll to top functionality
 function scrollToTop() {
@@ -174,41 +158,50 @@ document.querySelectorAll('.plan-btn').forEach(btn => {
     });
 });
 
-// Add percentage indicators to stats
-function addPercentageIndicators() {
-    const statItems = document.querySelectorAll('.stat-item');
-    statItems.forEach(item => {
-        const percentage = item.getAttribute('data-percentage');
-        if (percentage) {
-            const indicator = document.createElement('div');
-            indicator.className = 'stat-percentage';
-            indicator.textContent = `+${percentage}%`;
-            item.appendChild(indicator);
+
+
+// Animate progress rings
+function animateProgressCircles() {
+    const progressCircles = document.querySelectorAll('.progress-circle');
+    
+    progressCircles.forEach((circle, index) => {
+        const percentage = circle.getAttribute('data-percentage');
+        const fillCircle = circle.querySelector('.progress-ring-fill');
+        const numberElement = circle.querySelector('.stat-number');
+        
+        if (fillCircle && percentage && numberElement) {
+            const target = parseInt(percentage);
+            
+            // Set initial number
+            numberElement.textContent = '0';
+            
+            // Animate the ring
+            const circumference = 2 * Math.PI * 80;
+            const offset = circumference - (target / 100) * circumference;
+            
+            // Change color to black
+            fillCircle.style.stroke = '#2c3e50';
+            
+            setTimeout(() => {
+                fillCircle.style.strokeDashoffset = offset;
+            }, 500);
+            
+            // Animate the number
+            let current = 0;
+            const increment = target / 50;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                numberElement.textContent = Math.floor(current);
+            }, 50);
         }
     });
 }
 
-// Animate circular progress for stats
-function animateCircularProgress() {
-    const statItems = document.querySelectorAll('.stat-item');
-    statItems.forEach(item => {
-        const percentage = item.getAttribute('data-percentage');
-        const circularProgress = item.querySelector('.circular-progress');
-        
-        if (circularProgress && percentage) {
-            // Calculate the degree based on percentage
-            const degree = (percentage / 100) * 360;
-            
-            // Set initial state
-            circularProgress.style.background = `conic-gradient(#6c5ce7 0deg, #6c5ce7 0deg, rgba(255,255,255,0.2) 0deg)`;
-            
-            // Animate to final state
-            setTimeout(() => {
-                circularProgress.style.background = `conic-gradient(#6c5ce7 0deg, #6c5ce7 ${degree}deg, rgba(255,255,255,0.2) ${degree}deg)`;
-            }, 500);
-        }
-    });
-}
 
 // Add floating animation to feature icons
 function addFloatingAnimation() {
@@ -263,9 +256,22 @@ function showAlert(message, type = 'info') {
 
 // Initialize all functions when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    addPercentageIndicators();
-    animateCircularProgress();
     addFloatingAnimation();
+    
+    // Add observer for progress circles
+    const progressObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateProgressCircles();
+                progressObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    const statsSection = document.querySelector('.stats');
+    if (statsSection) {
+        progressObserver.observe(statsSection);
+    }
     
     // Initialize typing effect
     const heroTitle = document.querySelector('.hero h1');
