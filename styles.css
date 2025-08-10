@@ -1,3 +1,37 @@
+/* CSS Variables for Colors */
+:root {
+    /* Primary Colors */
+    --primary-blue: #0984e3;
+    --primary-blue-light: #74b9ff;
+    --primary-green: #2ecc71;
+    --primary-green-dark: #27ae60;
+    
+    /* Secondary Colors */
+    --secondary-dark: #2c3e50;
+    --secondary-dark-light: #34495e;
+    
+    /* Background Colors */
+    --bg-light: #f8f9fa;
+    --bg-white: #ffffff;
+    
+    /* Text Colors */
+    --text-white: #ffffff;
+    --text-dark: #2c3e50;
+    --text-gray: #666666;
+    --text-muted: #6c757d;
+    
+    /* Border & Shadow Colors */
+    --border-light: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-green: rgba(46, 204, 113, 0.3);
+    --shadow-green-hover: rgba(39, 174, 96, 0.4);
+    --shadow-blue: rgba(9, 132, 227, 0.25);
+    
+    /* Hover & Interactive Colors */
+    --hover-green: #27ae60;
+    --hover-blue: #74b9ff;
+    --hover-dark: #34495e;
+}
 
 * {
     margin: 0;
@@ -45,7 +79,7 @@ body {
 
 /* Header & Navigation */
 .header {
-    background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-light) 100%);
     width: 100vw;
     margin: 0;
     padding: 0;
@@ -57,9 +91,9 @@ body {
 }
 
 .navbar {
-    background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%) !important;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-light) 100%) !important;
     padding: 1rem 0;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 20px var(--shadow-color);
     width: 100%;
     margin: 0;
 }
@@ -77,7 +111,7 @@ body {
 }
 
 .navbar-nav .nav-link:hover {
-    color: #27ae60 !important;
+    color: var(--hover-green) !important;
     transform: translateY(-2px);
 }
 
@@ -93,28 +127,28 @@ body {
 
 /* Login Button */
 .login-btn {
-    background: #2ecc71;
+    background: var(--primary-green);
     border: none;
     border-radius: 50px;
     padding: 0.8rem 2rem;
     font-weight: 600;
-    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+    box-shadow: 0 4px 15px var(--shadow-green);
     transition: all 0.3s ease;
-    color: white;
+    color: var(--text-white);
 }
 
 .login-btn:hover {
-    background: #27ae60;
+    background: var(--hover-green);
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
-    color: white;
+    box-shadow: 0 6px 20px var(--shadow-green-hover);
+    color: var(--text-white);
 }
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-light) 100%);
     min-height: 100vh;
-    color: white;
+    color: var(--text-white);
     position: relative;
     overflow: hidden;
     width: 100vw;
@@ -149,36 +183,36 @@ body {
 
 /* CTA Buttons */
 .cta-primary {
-    background: #2ecc71;
+    background: var(--primary-green);
     border: none;
     border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+    box-shadow: 0 4px 15px var(--shadow-green);
     transition: all 0.3s ease;
-    color: white;
+    color: var(--text-white);
 }
 
 .cta-primary:hover {
-    background: #27ae60;
+    background: var(--hover-green);
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
-    color: white;
+    box-shadow: 0 6px 20px var(--shadow-green-hover);
+    color: var(--text-white);
 }
 
 .cta-secondary {
-    border: 2px solid white;
+    border: 2px solid var(--text-white);
     border-radius: 50px;
     transition: all 0.3s ease;
 }
 
 .cta-secondary:hover {
     transform: translateY(-3px);
-    background: white;
-    color: #0984e3;
+    background: var(--text-white);
+    color: var(--primary-blue);
 }
 
 /* Features Section */
 .features {
-    background: #f8f9fa;
+    background: var(--bg-light);
     padding-top: 6rem;
     width: 100%;
     margin: 0;
@@ -199,7 +233,7 @@ body {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(45deg, #0984e3, #74b9ff);
+    background: linear-gradient(45deg, var(--primary-blue), var(--primary-blue-light));
 }
 
 .feature-card:hover {
@@ -209,12 +243,12 @@ body {
 
 .feature-icon {
     font-size: 3rem;
-    color: #2c3e50;
+    color: var(--secondary-dark);
 }
 
 /* Plans Section */
 .plans {
-    background: #f8f9fa;
+    background: var(--bg-light);
     width: 100%;
     margin: 0;
     left: 0;
@@ -228,12 +262,12 @@ body {
 
 .plan-card:hover {
     transform: translateY(-10px);
-    border-color: #0984e3 !important;
+    border-color: var(--primary-blue) !important;
 }
 
 .plan-card.featured {
-    background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%) !important;
-    color: white;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-light) 100%) !important;
+    color: var(--text-white);
     transform: scale(1.05);
 }
 
@@ -247,34 +281,34 @@ body {
 }
 
 .plan-btn {
-    background: #2c3e50;
+    background: var(--secondary-dark);
     border: none;
     border-radius: 50px;
-    color: white;
+    color: var(--text-white);
     transition: all 0.3s ease;
 }
 
 .btn-primary.plan-btn {
-    background: #2c3e50;
-    border-color: #2c3e50;
-    color: white;
+    background: var(--secondary-dark);
+    border-color: var(--secondary-dark);
+    color: var(--text-white);
 }
 
 .plan-btn:hover {
-    background: #34495e;
+    background: var(--hover-dark);
     transform: translateY(-2px);
 }
 
 .btn-primary.plan-btn:hover {
-    background: #34495e;
-    border-color: #34495e;
+    background: var(--hover-dark);
+    border-color: var(--hover-dark);
     transform: translateY(-2px);
 }
 
 /* Stats Section */
 .stats {
-    background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-light) 100%);
+    color: var(--text-white);
     width: 100%;
     margin: 0;
     left: 0;
@@ -282,14 +316,14 @@ body {
 }
 
 .stat-number {
-    color: #2c3e50;
+    color: var(--secondary-dark);
 }
 
 
 
 /* Testimonials Section */
 .testimonials {
-    background: #f8f9fa;
+    background: var(--bg-light);
     width: 100%;
     margin: 0;
     left: 0;
@@ -304,7 +338,7 @@ body {
 .testimonial-card::before {
     content: '"';
     font-size: 4rem;
-    color: #27ae60;
+    color: var(--hover-green);
     position: absolute;
     top: -1rem;
     right: 1rem;
@@ -318,24 +352,24 @@ body {
 
 .testimonial-text {
     font-style: italic;
-    color: #666;
+    color: var(--text-gray);
 }
 
 .author-avatar {
     width: 50px;
     height: 50px;
-    background: linear-gradient(45deg, #0984e3, #74b9ff);
+    background: linear-gradient(45deg, var(--primary-blue), var(--primary-blue-light));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--text-white);
     font-weight: 600;
 }
 
 /* Contact Section */
 .contact {
-    background: #f8f9fa;
+    background: var(--bg-light);
     width: 100%;
     margin: 0;
     left: 0;
@@ -345,31 +379,31 @@ body {
 .contact-icon {
     width: 50px;
     height: 50px;
-    background: linear-gradient(45deg, #0984e3, #74b9ff);
+    background: linear-gradient(45deg, var(--primary-blue), var(--primary-blue-light));
     border-radius: 50%;
     display: flex;
-    align-items: center;
+ align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--text-white);
     font-size: 1.2rem;
 }
 
 .submit-btn {
-    background: #2ecc71;
+    background: var(--primary-green);
     border: none;
     border-radius: 50px;
     transition: all 0.3s ease;
 }
 
 .submit-btn:hover {
-    background: #27ae60;
+    background: var(--hover-green);
     transform: translateY(-2px);
 }
 
 /* Footer */
 .footer {
-    background: #0984e3;
-    color: white;
+    background: var(--primary-blue);
+    color: var(--text-white);
     width: 100%;
     margin: 0;
     left: 0;
@@ -377,17 +411,17 @@ body {
 }
 
 .footer h3 {
-    color: white;
+    color: var(--text-white);
 }
 
 .footer a {
-    color: white;
+    color: var(--text-white);
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .footer a:hover {
-    color: #2c3e50;
+    color: var(--secondary-dark);
 }
 
 /* Override Bootstrap text-muted in footer */
@@ -412,8 +446,8 @@ body {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    background: linear-gradient(45deg, #0984e3, #74b9ff);
-    color: white;
+    background: linear-gradient(45deg, var(--primary-blue), var(--primary-blue-light));
+    color: var(--text-white);
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -431,7 +465,7 @@ body {
 
 .scroll-top:hover {
     transform: translateY(-3px);
-    background: #2c3e50;
+    background: var(--secondary-dark);
 }
 
 /* Animations */
@@ -476,11 +510,11 @@ body {
 }
 
 .progress-ring-bg {
-    stroke: #e0e0e0;
+    stroke: var(--border-light);
 }
 
 .progress-ring-fill {
-    stroke: #2c3e50;
+    stroke: var(--secondary-dark);
     transition: stroke-dashoffset 2s ease;
 }
 
@@ -490,7 +524,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: #2c3e50;
+    color: var(--secondary-dark);
     font-weight: bold;
 }
 
@@ -524,27 +558,27 @@ body {
 }
 
 .btn-primary {
-    background-color: #2ecc71;
-    border-color: #2ecc71;
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
 }
 
 .btn-primary:hover {
-    background-color: #27ae60;
-    border-color: #27ae60;
+    background-color: var(--hover-green);
+    border-color: var(--hover-green);
 }
 
 .text-primary {
-    color: #2ecc71;
+    color: var(--primary-green);
 }
 
 .bg-primary {
-    background-color: #2ecc71;
+    background-color: var(--primary-green);
 }
 
 /* Form Controls */
 .form-control:focus {
-    border-color: #0984e3 !important;
-    box-shadow: 0 0 0 0.2rem rgba(9, 132, 227, 0.25) !important;
+    border-color: var(--primary-blue) !important;
+    box-shadow: 0 0 0 0.2rem var(--shadow-blue) !important;
 }
 
 /* Card Enhancements */
